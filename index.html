@@ -145,8 +145,6 @@
       font-weight: 900;
       line-height: 1.05;
       color: #fff;
-      opacity: 0;
-      animation: fadeUp .7s ease forwards .5s;
     }
     .hero-name .accent { color: var(--cyan); text-shadow: var(--glow-c); }
 
@@ -157,8 +155,7 @@
       color: var(--text-dim);
       margin-top: .8rem;
       letter-spacing: .05em;
-      opacity: 0;
-      animation: fadeUp .7s ease forwards .7s;
+      min-height: 2em;
     }
     .hero-title .hl { color: var(--magenta); }
 
@@ -1064,7 +1061,7 @@
       });
     }
 
-    // Start after the hero fadeUp animation finishes (~1.2s)
+    // Start typing after eyebrow fades in (~500ms)
     setTimeout(() => {
       heroCursor.style.visibility = 'visible';
       typeText(namePart1, 'Igor', 95, () => {
@@ -1075,7 +1072,7 @@
           }, 400);
         });
       });
-    }, 950);
+    }, 500);
   })();
 
   // Contact form — mailto fallback
