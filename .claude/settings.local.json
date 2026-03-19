@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"c:/Users/mathe/OneDrive/Documentos/Portfolio\" remote -v)",
+      "Bash(git -C \"c:/Users/mathe/OneDrive/Documentos/Portfolio\" status)",
+      "Bash(git -C \"c:/Users/mathe/OneDrive/Documentos/Portfolio\" add index.html)",
+      "Bash(git -C:*)"
+    ]
+  }
+}
