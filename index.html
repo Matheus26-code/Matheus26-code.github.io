@@ -666,8 +666,13 @@
 <section id="hero">
   <div class="hero-orb"></div>
   <p class="hero-eyebrow">BACK-END DEVELOPER &amp; CLOUD ENGINEER</p>
-  <h1 class="hero-name">Igor<br /><span class="accent">Matheus.</span></h1>
-  <p class="hero-title">Java • Spring Boot • Python • <span class="hl">AWS</span> • Terraform</p>
+  <h1 class="hero-name">
+    <span id="typed-name-1"></span><br />
+    <span class="accent" id="typed-name-2"></span><span class="cursor-blink" id="hero-cursor" style="visibility:hidden"></span>
+  </h1>
+  <p class="hero-title">
+    <span id="typed-title"></span><span class="cursor-blink" id="title-cursor" style="visibility:hidden"></span>
+  </p>
   <p class="hero-desc">
     Construo APIs escaláveis e infraestrutura cloud-native. Transição de carreira da logística
     para a engenharia de software — trazendo resiliência e visão de processos críticos para cada sistema que desenvolvo.
@@ -1012,6 +1017,66 @@
     });
   }, { threshold: 0.12 });
   reveals.forEach(r => obs.observe(r));
+
+  // Typewriter animation
+  (function () {
+    const namePart1   = document.getElementById('typed-name-1');
+    const namePart2   = document.getElementById('typed-name-2');
+    const heroCursor  = document.getElementById('hero-cursor');
+    const titleEl     = document.getElementById('typed-title');
+    const titleCursor = document.getElementById('title-cursor');
+
+    const titles = [
+      'Back-End Developer & Cloud Engineer',
+      'Java • Spring Boot • Python • AWS',
+      'APIs RESTful • Docker • Terraform • CI/CD',
+      'Estagiário / Dev Júnior — disponível',
+    ];
+
+    function typeText(el, text, speed, done) {
+      let i = 0;
+      el.textContent = '';
+      function next() {
+        if (i < text.length) { el.textContent += text[i++]; setTimeout(next, speed); }
+        else if (done) setTimeout(done, 200);
+      }
+      next();
+    }
+
+    function deleteText(el, speed, done) {
+      function next() {
+        if (el.textContent.length > 0) { el.textContent = el.textContent.slice(0, -1); setTimeout(next, speed * 0.5); }
+        else if (done) setTimeout(done, 150);
+      }
+      next();
+    }
+
+    let titleIndex = 0;
+    function cycleTitles() {
+      titleCursor.style.visibility = 'visible';
+      typeText(titleEl, titles[titleIndex], 42, () => {
+        setTimeout(() => {
+          deleteText(titleEl, 42, () => {
+            titleIndex = (titleIndex + 1) % titles.length;
+            cycleTitles();
+          });
+        }, 2600);
+      });
+    }
+
+    // Start after the hero fadeUp animation finishes (~1.2s)
+    setTimeout(() => {
+      heroCursor.style.visibility = 'visible';
+      typeText(namePart1, 'Igor', 95, () => {
+        typeText(namePart2, 'Matheus.', 95, () => {
+          setTimeout(() => {
+            heroCursor.style.visibility = 'hidden';
+            cycleTitles();
+          }, 400);
+        });
+      });
+    }, 950);
+  })();
 
   // Contact form — mailto fallback
   document.getElementById('contactForm').addEventListener('submit', function(e) {
