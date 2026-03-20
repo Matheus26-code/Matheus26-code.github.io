@@ -105,16 +105,33 @@
       text-decoration: none;
     }
     .nav-logo span { color: var(--magenta); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
     .nav-links a {
       font-family: var(--font-mono);
       font-size: .78rem;
-      color: var(--text-dim);
+      color: #7a8faa;
       text-decoration: none;
-      letter-spacing: .1em;
-      transition: color .2s;
+      letter-spacing: .08em;
+      transition: color .2s, text-shadow .2s;
+      position: relative;
+      padding-bottom: 2px;
     }
-    .nav-links a:hover { color: var(--cyan); text-shadow: var(--glow-c); }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s ease;
+      box-shadow: var(--glow-c);
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--cyan); }
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-num { color: var(--magenta); font-size: .7rem; margin-right: 3px; }
 
     /* ── SECTIONS ── */
     section { position: relative; z-index: 1; }
@@ -652,10 +669,10 @@
 <nav>
   <a href="#hero" class="nav-logo">IM<span>.</span>DEV</a>
   <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#stack">stack</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#contact">contact</a></li>
+    <li><a href="#about" data-section="about"><span class="nav-num">01/</span>about</a></li>
+    <li><a href="#stack" data-section="stack"><span class="nav-num">02/</span>stack</a></li>
+    <li><a href="#projects" data-section="projects"><span class="nav-num">03/</span>projects</a></li>
+    <li><a href="#contact" data-section="contact"><span class="nav-num">04/</span>contact</a></li>
   </ul>
 </nav>
 
@@ -700,7 +717,7 @@
           e automatizando pipelines com <strong>GitHub Actions</strong>.
         </p>
         <p>
-          Busco minha primeira oportunidade como <strong>Estagiário ou Desenvolvedor Júnior</strong> Back-End / Cloud,
+          Busco minha uma oportunidade como <strong>Desenvolvedor</strong> Back-End / Cloud,
           onde possa aplicar arquiteturas resilientes e IaC em ambiente real.
         </p>
       </div>
@@ -1002,6 +1019,18 @@
       ring.style.width = '36px'; ring.style.height = '36px';
     });
   });
+
+  // Nav scroll spy
+  const navLinks = document.querySelectorAll('.nav-links a[data-section]');
+  const sections = ['about', 'stack', 'projects', 'contact'].map(id => document.getElementById(id));
+  function updateActiveNav() {
+    const scrollY = window.scrollY + 120;
+    let current = '';
+    sections.forEach(sec => { if (sec && sec.offsetTop <= scrollY) current = sec.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === current));
+  }
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
 
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
