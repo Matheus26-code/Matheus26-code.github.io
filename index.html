@@ -106,32 +106,44 @@
     }
     .nav-logo span { color: var(--magenta); }
 
-    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
     .nav-links a {
       font-family: var(--font-mono);
       font-size: .78rem;
-      color: #7a8faa;
+      color: var(--text-dim);
       text-decoration: none;
-      letter-spacing: .08em;
-      transition: color .2s, text-shadow .2s;
+      letter-spacing: .12em;
+      transition: color .2s, text-shadow .2s, letter-spacing .2s;
       position: relative;
-      padding-bottom: 2px;
+      padding: 2px 0;
+    }
+    .nav-links a::before {
+      content: '> ';
+      color: var(--magenta);
+      opacity: 0;
+      transform: translateX(-6px);
+      display: inline-block;
+      transition: opacity .2s, transform .2s;
     }
     .nav-links a::after {
       content: '';
       position: absolute; bottom: -2px; left: 0; right: 0;
       height: 1px;
-      background: var(--cyan);
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform .25s ease;
+      transition: transform .3s ease;
       box-shadow: var(--glow-c);
     }
-    .nav-links a:hover { color: #fff; }
-    .nav-links a:hover::after { transform: scaleX(1); }
-    .nav-links a.active { color: var(--cyan); }
+    .nav-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 12px rgba(0,245,255,0.5);
+      letter-spacing: .16em;
+    }
+    .nav-links a:hover::before { opacity: 1; transform: translateX(0); }
+    .nav-links a:hover::after  { transform: scaleX(1); }
+    .nav-links a.active { color: var(--cyan); text-shadow: 0 0 8px rgba(0,245,255,0.4); }
     .nav-links a.active::after { transform: scaleX(1); }
-    .nav-num { color: var(--magenta); font-size: .7rem; margin-right: 3px; }
 
     /* ── SECTIONS ── */
     section { position: relative; z-index: 1; }
@@ -669,10 +681,10 @@
 <nav>
   <a href="#hero" class="nav-logo">IM<span>.</span>DEV</a>
   <ul class="nav-links">
-    <li><a href="#about" data-section="about"><span class="nav-num">01/</span>about</a></li>
-    <li><a href="#stack" data-section="stack"><span class="nav-num">02/</span>stack</a></li>
-    <li><a href="#projects" data-section="projects"><span class="nav-num">03/</span>projects</a></li>
-    <li><a href="#contact" data-section="contact"><span class="nav-num">04/</span>contact</a></li>
+    <li><a href="#about" data-section="about">about</a></li>
+    <li><a href="#stack" data-section="stack">stack</a></li>
+    <li><a href="#projects" data-section="projects">projects</a></li>
+    <li><a href="#contact" data-section="contact">contact</a></li>
   </ul>
 </nav>
 
