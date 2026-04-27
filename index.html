@@ -678,6 +678,59 @@
       #hero { padding: 0 6vw; }
       .section-wrap { padding: 4rem 6vw; }
     }
+  
+    /* ============================================
+       MELHORIAS DE LEGIBILIDADE - Atualização 2026
+       ============================================ */
+    
+    /* Tipografia global melhorada */
+    body { font-size: 17px; line-height: 1.8; }
+    
+    /* About section */
+    .about-text p { 
+      font-size: 17px; 
+      line-height: 1.85; 
+      color: rgba(220, 235, 255, 0.88);
+      margin-bottom: 1.2rem;
+    }
+    .about-text strong { color: var(--cyan); font-weight: 600; }
+    
+    /* Stat num maior */
+    .stat-num { font-size: 2.4rem; white-space: pre-line; line-height: 1.2; }
+
+    /* Stack tags */
+    .tag { font-size: 13.5px; padding: 6px 14px; border-radius: 7px; }
+    .stack-cat { padding: 28px 32px; border-radius: 16px; transition: border-color .3s, box-shadow .3s; }
+    .stack-cat:hover { border-color: rgba(0,245,255,.35); box-shadow: 0 4px 24px rgba(0,245,255,.07); }
+
+    /* Project cards - layout em coluna única */
+    .projects-grid { display: flex; flex-direction: column; gap: 24px; }
+    .project-card { grid-column: auto !important; border-radius: 20px; padding: 36px 44px; }
+    .project-name { font-size: 1.65rem; font-weight: 700; margin: 10px 0 14px; line-height: 1.3; }
+    .project-desc { font-size: 16px; line-height: 1.78; color: rgba(200, 220, 255, 0.84); margin-bottom: 18px; }
+    .project-desc strong { color: var(--cyan); }
+    .project-highlights li { font-size: 15px; line-height: 1.72; color: rgba(180, 210, 255, 0.82); padding: 4px 0; }
+    
+    /* Tech tags nos project cards */
+    .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .tech-tag { font-size: 12.5px; padding: 5px 12px; border-radius: 6px; }
+    
+    /* Badge de projeto em produção */
+    .badge-live {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      color: #0a0e1a; background: var(--cyan); padding: 3px 9px;
+      border-radius: 20px; text-transform: uppercase; margin-left: 10px;
+      vertical-align: middle; animation: pulse-live 2s ease-in-out infinite;
+    }
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; } 50% { opacity: .7; }
+    }
+    .badge-live::before { 
+      content: ''; width: 6px; height: 6px; border-radius: 50%; 
+      background: #0a0e1a; display: inline-block; 
+    }
+    
   </style>
 </head>
 <body>
@@ -743,20 +796,20 @@
       </div>
       <div class="about-stats reveal">
         <div class="stat-card">
-          <div class="stat-num">3+</div>
+          <div class="stat-num">5+</div>
           <div class="stat-label">PROJETOS ENTREGUES</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">AWS</div>
-          <div class="stat-label">TRAINING BADGES</div>
+          <div class="stat-num">63</div>
+          <div class="stat-label">TESTES AUTOMATIZADOS</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">2</div>
+          <div class="stat-num">Java</div>
           <div class="stat-label">LINGUAGENS BACK-END</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">IaC</div>
-          <div class="stat-label">TERRAFORM + DOCKER</div>
+          <div class="stat-num">AWS</div>
+          <div class="stat-label">CLOUD &amp; IaC</div>
         </div>
       </div>
     </div>
@@ -774,14 +827,19 @@
       <div class="stack-cat reveal">
         <p class="stack-cat-title">// BACK-END</p>
         <div class="stack-tags">
-          <span class="tag">Java</span>
-          <span class="tag">Spring Boot 3</span>
-          <span class="tag">Hibernate</span>
-          <span class="tag">Maven</span>
+          <span class="tag aws">Java 21</span>
+          <span class="tag aws">Spring Boot 3.5</span>
+          <span class="tag aws">Spring AI 1.0</span>
+          <span class="tag">Spring Security</span>
+          <span class="tag">JWT (JJWT)</span>
+          <span class="tag">Hibernate / JPA</span>
+          <span class="tag aws">Flyway</span>
           <span class="tag">Python</span>
           <span class="tag">Django</span>
           <span class="tag">Flask</span>
           <span class="tag">APIs RESTful</span>
+          <span class="tag">Gradle</span>
+          <span class="tag">Maven</span>
         </div>
       </div>
       <div class="stack-cat reveal">
@@ -791,10 +849,12 @@
           <span class="tag aws">AWS RDS</span>
           <span class="tag aws">AWS S3</span>
           <span class="tag aws">IAM / VPC</span>
-          <span class="tag">Terraform</span>
-          <span class="tag">Docker</span>
+          <span class="tag aws">Terraform</span>
+          <span class="tag aws">Docker</span>
           <span class="tag">Docker Compose</span>
-          <span class="tag">GitHub Actions</span>
+          <span class="tag aws">GitHub Actions</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Render.com</span>
           <span class="tag">Nginx</span>
           <span class="tag">Gunicorn</span>
         </div>
@@ -802,13 +862,16 @@
       <div class="stack-cat reveal">
         <p class="stack-cat-title">// DADOS & QA</p>
         <div class="stack-tags">
-          <span class="tag">PostgreSQL</span>
+          <span class="tag">PostgreSQL 16</span>
           <span class="tag">MySQL</span>
           <span class="tag">SQLite</span>
           <span class="tag">H2 Database</span>
+          <span class="tag aws">Flyway</span>
           <span class="tag test">JUnit 5</span>
+          <span class="tag test">Mockito</span>
+          <span class="tag test">MockMvc</span>
           <span class="tag test">Pytest</span>
-          <span class="tag test">Selenium</span>
+          <span class="tag">Swagger / OpenAPI</span>
           <span class="tag test">Pact (Contract)</span>
         </div>
       </div>
@@ -867,7 +930,40 @@
     <div class="projects-grid">
 
       <!-- FEATURED -->
-      <div class="project-card featured reveal">
+      <div class="project-card reveal">
+        <div class="project-header">
+          <span class="project-num">00 / EM PRODUÇÃO 🔴</span>
+          <div class="project-links">
+            <a href="https://flowline-nf81.onrender.com" class="project-link" target="_blank">Demo ↗</a>
+            <a href="https://flowline-nf81.onrender.com/swagger-ui/index.html" class="project-link" target="_blank">Swagger ↗</a>
+            <a href="https://github.com/Matheus26-code/flowline" class="project-link" target="_blank">GitHub ↗</a>
+          </div>
+        </div>
+        <div class="project-name">FlowLine — Rastreamento Logístico B2B</div>
+        <p class="project-desc">
+          Sistema B2B de rastreamento logístico interno com <strong>Spring AI + Claude</strong> integrado ao backend — IA consultando operações em tempo real. Autenticação JWT com múltiplos roles e suíte completa de testes automatizados.
+        </p>
+        <ul class="project-highlights">
+          <li>Domínio completo: Warehouse, User, Sector, Product, MovementOrder</li>
+          <li>JWT Authentication com 4 roles (ADMIN, MANAGE, OPERATOR, ASSISTANT)</li>
+          <li>Spring AI 1.0.0 + Claude integrado para consultas operacionais em tempo real</li>
+          <li>63 testes: 33 unitários (Mockito) + 30 de integração (MockMvc + JWT real + H2)</li>
+          <li>CI/CD com GitHub Actions + deploy automatizado no Render</li>
+        </ul>
+        <div class="project-tech">
+          <span class="tech-tag">Java 21</span>
+          <span class="tech-tag">Spring Boot 3.5</span>
+          <span class="tech-tag">Spring AI 1.0</span>
+          <span class="tech-tag">Spring Security + JWT</span>
+          <span class="tech-tag">PostgreSQL 16</span>
+          <span class="tech-tag">Flyway</span>
+          <span class="tech-tag">Docker</span>
+          <span class="tech-tag">GitHub Actions</span>
+          <span class="tech-tag">Render</span>
+          <span class="tech-tag">Swagger</span>
+        </div>
+      </div>
+    <div class="project-card featured reveal">
         <div class="project-header">
           <span class="project-num">01 / FEATURED</span>
           <div class="project-links">
